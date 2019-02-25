@@ -1,0 +1,11 @@
+<p>
+  login works!
+</p>
+<div *ngIf=isError>
+  {{ errorMessage }}
+</div>
+<div>
+Username : <input type='text' name='userName' [(ngModel)] = 'userName'/>
+Password : <input type ='password' name='password' [(ngModel)] = 'password'/>
+<button (click)=handlelogin()> login </button>
+</div>
