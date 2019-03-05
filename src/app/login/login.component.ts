@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HardCodedAutheticationService } from '../service/hard-coded-authetication.service';
 
 @Component({
   selector: 'app-login',
@@ -9,20 +11,22 @@ export class LoginComponent implements OnInit {
 
   userName: string;
   password: string;
-  isError: boolean;
+  invalidLogin: boolean;
   errorMessage = 'Invalid Creditionals';
-
-  constructor() { }
-
+  //This is way to inject the router. Where private will be the access.
+  constructor(private router: Router,
+    private hardCodedAuthetication : HardCodedAutheticationService) { }
   ngOnInit() {
   }
 
   handlelogin() {
     console.log(this.userName);
-    if (this.userName === 'Prashanth' && this.password === 'yna') {
-     this.isError = false;
+    if (this.hardCodedAuthetication.authetication(this.userName, this.password)) {
+      //These can be accessed as a member varables to route to welcome with param (name).
+      this.router.navigate(['welcome', this.userName]);
+      this.invalidLogin = false;
     } else {
-      this.isError = true;
+      this.invalidLogin = true;
     }
   }
 
