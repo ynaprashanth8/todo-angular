@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
   }
 
   handlelogin() {
-    console.log(this.userName);
     if (this.hardCodedAuthetication.authetication(this.userName, this.password)) {
       //These can be accessed as a member varables to route to welcome with param (name).
       this.router.navigate(['welcome', this.userName]);
